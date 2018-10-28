@@ -44,3 +44,25 @@ TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoOKAFallo){
     delete controladorAlertas;
     delete orquestador;
 }
+
+TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoFalloAOK){
+    MockConectorCI* mockCI = new MockConectorCI();
+    MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    
+    EXPECT_CALL(*mockCI, obtenerEstado())
+    .Times(2)
+    .WillOnce(Return(Estado::FALLO))
+    .WillOnce(Return(Estado::OK));
+
+    EXPECT_CALL(*controladorAlertas, comunicarEstadoOK())
+    .Times(1);
+
+    Estado estadoFallo = orquestador->obtenerEstado();
+    Estado estadoOK = orquestador -> obtenerEstado();
+    ASSERT_EQ(Estado::OK, estadoOK);
+    
+    delete mockCI;
+    delete controladorAlertas;
+    delete orquestador;
+}
