@@ -3,6 +3,7 @@
 #include "MockConectorCI.cpp"
 #include "MockControladorDeAlertas.cpp"
 #include "Orquestador.hpp"
+#include "Estado.hpp"
 
 using ::testing::AtLeast;
 using ::testing::Return;

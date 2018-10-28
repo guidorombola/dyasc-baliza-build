@@ -1,5 +1,5 @@
-#ifndef ESTADO_CPP
-#define ESTADO_CPP
+#ifndef ESTADO_H
+#define ESTADO_H
 
 enum class Estado {
     OK, FALLO

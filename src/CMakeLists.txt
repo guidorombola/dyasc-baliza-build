@@ -5,12 +5,12 @@ target_sources(
     PRIVATE
         ConectorCI.cpp
         Orquestador.cpp
-        ControladorDeAlertas.cpp
-        Estado.cpp   
+        ControladorDeAlertas.cpp  
     PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/ConectorCI.hpp
         ${CMAKE_CURRENT_LIST_DIR}/Orquestador.hpp
         ${CMAKE_CURRENT_LIST_DIR}/ControladorDeAlertas.hpp
+        ${CMAKE_CURRENT_LIST_DIR}/Estado.hpp
     )
 
 target_include_directories(

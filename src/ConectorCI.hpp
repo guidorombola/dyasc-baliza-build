@@ -1,7 +1,7 @@
 #ifndef CONECTORCI_H
 #define CONECTORCI_H
 
-#include "Estado.cpp"
+#include "Estado.hpp"
 
 class ConectorCI {
     private:
