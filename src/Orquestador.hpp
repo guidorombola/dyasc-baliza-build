@@ -3,7 +3,6 @@
 
 #include "ConectorCI.hpp"
 #include "ControladorDeAlertas.hpp"
-#include "Estado.hpp"
 
 class Orquestador{
     public:
