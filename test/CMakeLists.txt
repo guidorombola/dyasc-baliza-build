@@ -2,6 +2,7 @@ add_executable(
     unit_tests
     BalizaTest.cpp
     MockConectorCI.cpp
+    MockControladorDeAlertas.cpp
     )
 
 target_link_libraries(
