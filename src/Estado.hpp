@@ -1,7 +1,7 @@
 #ifndef ESTADO_H
 #define ESTADO_H
 
-enum class Estado {
+enum Estado {
     OK, FALLO
 };
 
