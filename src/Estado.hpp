@@ -2,8 +2,8 @@
 #define ESTADO_H
 
 enum class Estado {
-    OK = 0,
-    FALLO = 1
+    OK,
+    FALLO
 };
 
 #endif
