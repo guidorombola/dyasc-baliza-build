@@ -2,7 +2,7 @@
 #define ESTADO_CPP
 
 enum class Estado {
-    OK
+    OK, FALLO
 };
 
 #endif
