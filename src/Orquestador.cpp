@@ -4,6 +4,6 @@ Orquestador::Orquestador(ConectorCI* conector){
     con = conector;
 }
 
-bool Orquestador::obtenerEstado(){
+Estado Orquestador::obtenerEstado(){
     return con->obtenerEstado();
 }

@@ -1,11 +1,13 @@
 #ifndef CONECTORCI_H
 #define CONECTORCI_H
 
+#include "Estado.cpp"
+
 class ConectorCI {
     private:
-        bool estado;
+        Estado estado;
     public:
-        virtual bool obtenerEstado();
+        virtual Estado obtenerEstado();
 };
 
 #endif

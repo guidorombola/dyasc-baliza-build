@@ -1,5 +1,5 @@
 #include "ConectorCI.hpp"
 
-bool ConectorCI::obtenerEstado(){
+Estado ConectorCI::obtenerEstado(){
     return estado;
 }

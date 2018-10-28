@@ -12,11 +12,11 @@ TEST(prueba, orquestadorDevuelveEstadoSeteadoEnMock){
     
     EXPECT_CALL(*mockCI, obtenerEstado())
     .Times(1)
-    .WillOnce(Return(true));
+    .WillOnce(Return(Estado::OK));
 
-    bool valor = orquestador->obtenerEstado();
+    Estado estado = orquestador->obtenerEstado();
 
-    ASSERT_TRUE(valor);
+    ASSERT_EQ(Estado::OK, estado);
     
     delete mockCI;
     delete orquestador;

@@ -6,7 +6,7 @@
 class Orquestador{
     public:
         Orquestador(ConectorCI* conector);
-        bool obtenerEstado();
+        Estado obtenerEstado();
     private:
         ConectorCI* con;
 };

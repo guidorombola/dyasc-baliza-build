@@ -3,5 +3,5 @@
 
 class MockConectorCI : public ConectorCI {
     public:
-    MOCK_METHOD0(obtenerEstado, bool());
+    MOCK_METHOD0(obtenerEstado, Estado());
 };
