@@ -15,6 +15,8 @@ Estado Orquestador::obtenerEstado(){
             control -> comunicarEstadoOK();  
         }
     }
+    if(estadoActual == Estado::OK) control->comunicarEstadoOK(); //Esto es una prueba. Luego eliminar
+
     ultimoEstado = estadoActual;
     
     return estadoActual;

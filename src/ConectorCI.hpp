@@ -1,6 +1,8 @@
 #ifndef CONECTORCI_H
 #define CONECTORCI_H
 
+#include <WiFi.h>
+#include <HTTPClient.h>
 #include "Estado.hpp"
 
 class ConectorCI {
@@ -8,6 +10,7 @@ class ConectorCI {
         Estado estado;
     public:
         virtual Estado obtenerEstado();
+        void conectarARedWiFi();
 };
 
 #endif
