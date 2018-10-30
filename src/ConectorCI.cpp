@@ -1,5 +1,7 @@
 #include "ConectorCI.hpp"
 #include <Arduino.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
 
 const char* ssid = "";
 const char* password = "";
