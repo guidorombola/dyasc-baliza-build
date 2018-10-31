@@ -3,7 +3,7 @@
 Orquestador::Orquestador(VisualizadorDeEstado* conector, ComunicadorDeEventos* controlador){
     con = conector;
     control = controlador;
-    ultimoEstado = Estado::OK;
+    ultimoEstado = Estado::INDEFINIDO;
 }
 
 Estado Orquestador::obtenerEstado(){
@@ -15,7 +15,6 @@ Estado Orquestador::obtenerEstado(){
             control -> comunicarEstadoOK();  
         }
     }
-    //if(estadoActual == Estado::OK) control->comunicarEstadoOK(); //Esto es una prueba. Luego eliminar
 
     ultimoEstado = estadoActual;
     
