@@ -19,5 +19,5 @@ void setup() {
 
 void loop() {
     orquestador->obtenerEstado();
-    delay(10000);
+    delay(5000);
 }
