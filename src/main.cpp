@@ -12,7 +12,6 @@ Orquestador* orquestador;
 void setup() {
     Serial.begin(115200);
     conector = new ConectorCI();
-    conector->conectarARedWiFi();
     controlador = new ControladorDeAlertas();
     orquestador = new Orquestador(conector, controlador);
 }

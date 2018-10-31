@@ -1,14 +1,17 @@
 #include "ConectorCI.hpp"
-#include <Arduino.h>
-#include <WiFi.h>
 #include <HTTPClient.h>
 
-const char* ssid = "";
-const char* password = "";
-const char* token = "";
+const char* ssid = "Yoda";
+const char* clave = "gonzalono";
+const char* token = "token cy6bhRQXA54L7iVFkfAWfQ";
+
+ConectorCI::ConectorCI() {
+    this->wifi = new ConectorWiFi(ssid, clave);
+    this->wifi->realizarConexion();
+}
 
 Estado ConectorCI::obtenerEstado(){
-    if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
+    if (this->wifi->estaConectado()) {
         HTTPClient http;
         String estadoActual;
         http.begin("https://api.travis-ci.com/repo/guidorombola%2Fdyasc-2018/branch/master");
@@ -32,13 +35,4 @@ Estado ConectorCI::obtenerEstado(){
         }
     }
     return estado;
-}
-
-void ConectorCI::conectarARedWiFi(){
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(1000);
-        Serial.println("Connecting to WiFi..");
-    }
-    Serial.println("Connected to the WiFi network"); 
 }
