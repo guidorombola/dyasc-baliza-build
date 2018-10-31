@@ -1,7 +1,7 @@
-#include <ConectorCI.hpp>
+#include <VisualizadorDeEstado.hpp>
 #include "gmock/gmock.h"
 
-class MockConectorCI : public ConectorCI {
+class MockConectorCI : public VisualizadorDeEstado {
     public:
     MOCK_METHOD0(obtenerEstado, Estado());
 };

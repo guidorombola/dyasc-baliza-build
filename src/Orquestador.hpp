@@ -1,16 +1,16 @@
 #ifndef ORQUESTADOR_H
 #define ORQUESTADOR_H
 
-#include "ConectorCI.hpp"
-#include "ControladorDeAlertas.hpp"
+#include "VisualizadorDeEstado.hpp"
+#include "ComunicadorDeEventos.hpp"
 
 class Orquestador{
     public:
-        Orquestador(ConectorCI* conector, ControladorDeAlertas* controlador);
+        Orquestador(VisualizadorDeEstado* conector, ComunicadorDeEventos* controlador);
         Estado obtenerEstado();
     private:
-        ConectorCI* con;
-        ControladorDeAlertas* control;
+        VisualizadorDeEstado* con;
+        ComunicadorDeEventos* control;
         Estado ultimoEstado;
 };
 

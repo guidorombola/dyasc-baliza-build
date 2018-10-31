@@ -1,13 +1,17 @@
 #ifndef CONECTORCI_H
 #define CONECTORCI_H
 
-#include "Estado.hpp"
+#include "VisualizadorDeEstado.hpp"
+#include "ConectorWiFi.hpp"
 
-class ConectorCI {
+class ConectorCI : public VisualizadorDeEstado {
+    public:
+        ConectorCI();
+        virtual Estado obtenerEstado();
+        void conectarARedWiFi();
     private:
         Estado estado;
-    public:
-        virtual Estado obtenerEstado();
+        ConectorWiFi* wifi;
 };
 
 #endif
