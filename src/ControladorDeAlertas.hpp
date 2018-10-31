@@ -10,6 +10,8 @@ class ControladorDeAlertas : public ComunicadorDeEventos {
          virtual void comunicarEstadoFallo();
 
         private:
+         int ledRojo;
+         int ledVerde;
          void parpadearLed(int led, int cantidadDeParpadeos);
 };
 

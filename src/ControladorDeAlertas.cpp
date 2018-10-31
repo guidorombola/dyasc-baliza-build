@@ -1,28 +1,33 @@
 #include "ControladorDeAlertas.hpp"
 #include <Arduino.h>
 
+#define tiempoEntreParpadeo 50
+
 ControladorDeAlertas::ControladorDeAlertas(){
-    pinMode(2,OUTPUT);
-    pinMode(12,OUTPUT);
+    this->ledVerde = 2;
+    this->ledRojo = 12;
+
+    pinMode(this->ledVerde,OUTPUT);
+    pinMode(this->ledRojo,OUTPUT);
 }
 
 void ControladorDeAlertas::comunicarEstadoOK(){
-    parpadearLed(2, 5);
-    digitalWrite(2, HIGH);
+    parpadearLed(this->ledVerde, 5);
+    digitalWrite(this->ledVerde, HIGH);
 }
 
 void ControladorDeAlertas::comunicarEstadoFallo(){
-    parpadearLed(12, 10);
-    digitalWrite(12, HIGH);
+    parpadearLed(this->ledRojo, 10);
+    digitalWrite(this->ledRojo, HIGH);
 }
 
-void ControladorDeAlertas::parpadearLed(int led, int cantidadDeParpadeos) {
+void ControladorDeAlertas::parpadearLed(int led, int cantidadDeParpadeos){
 
-    for(int i = 0; i < cantidadDeParpadeos; i++)
-    {
+    for(int i = 0; i < cantidadDeParpadeos; i++) {
+
         digitalWrite(led, HIGH);
-        delay(50);
+        delay(tiempoEntreParpadeo);
         digitalWrite(led, LOW);
-        delay(50);
+        delay(tiempoEntreParpadeo);
     }
 }
