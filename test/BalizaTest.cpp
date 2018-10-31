@@ -26,7 +26,7 @@ TEST(prueba, orquestadorDevuelveEstadoSeteadoEnMock){
     delete orquestador;
 }
 
-TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoOKAFallo){
+TEST(prueba, orquestadorIniciaEnEstadoIndefinidoLuegoRecibeEstadoFalloEInformaAlControladorDeLedQueComuniqueFallo){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
     Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
@@ -40,6 +40,26 @@ TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoOKAFallo){
 
     Estado estado = orquestador->obtenerEstado();
     ASSERT_EQ(Estado::FALLO, estado);
+    
+    delete mockCI;
+    delete controladorAlertas;
+    delete orquestador;
+}
+
+TEST(prueba, orquestadorIniciaEnEstadoIndefinidoLuegoRecibeEstadoOKEInformaAlControladorDeLedQueComuniqueOK){
+    MockConectorCI* mockCI = new MockConectorCI();
+    MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    
+    EXPECT_CALL(*mockCI, obtenerEstado())
+    .Times(1)
+    .WillOnce(Return(Estado::OK));
+
+    EXPECT_CALL(*controladorAlertas, comunicarEstadoOK())
+    .Times(1);
+
+    Estado estado = orquestador->obtenerEstado();
+    ASSERT_EQ(Estado::OK, estado);
     
     delete mockCI;
     delete controladorAlertas;
@@ -62,6 +82,28 @@ TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoFalloAOK){
     Estado estadoFallo = orquestador->obtenerEstado();
     Estado estadoOK = orquestador -> obtenerEstado();
     ASSERT_EQ(Estado::OK, estadoOK);
+    
+    delete mockCI;
+    delete controladorAlertas;
+    delete orquestador;
+}
+
+TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoOKAFallo){
+    MockConectorCI* mockCI = new MockConectorCI();
+    MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    
+    EXPECT_CALL(*mockCI, obtenerEstado())
+    .Times(2)
+    .WillOnce(Return(Estado::OK))
+    .WillOnce(Return(Estado::FALLO));
+
+    EXPECT_CALL(*controladorAlertas, comunicarEstadoFallo())
+    .Times(1);
+
+    Estado estadoOK = orquestador->obtenerEstado();
+    Estado estadoFallo = orquestador -> obtenerEstado();
+    ASSERT_EQ(Estado::FALLO, estadoFallo);
     
     delete mockCI;
     delete controladorAlertas;
