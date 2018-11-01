@@ -1,0 +1,34 @@
+{
+    "build": {
+        "@type": "branch",
+        "@href": "/repo/6350830/branch/master",
+        "@representation": "standard",
+        "name": "master",
+        "repository": {
+            "@type": "repository",
+            "@href": "/repo/6350830",
+            "@representation": "minimal",
+            "id": 6350830,
+            "name": "dyasc-2018",
+            "slug": "repositorio-prueba/dyasc-2018"
+        },
+        "default_branch": true,
+        "exists_on_github": true,
+        "last_build": {
+            "@type": "build",
+            "@href": "/build/88533221",
+            "@representation": "minimal",
+            "id": 88533221,
+            "number": "59",
+            "state": "passed",
+            "duration": 51,
+            "event_type": "push",
+            "previous_state": "passed",
+            "pull_request_title": null,
+            "pull_request_number": null,
+            "started_at": "2018-10-19T12:00:09Z",
+            "finished_at": "2018-10-19T12:01:00Z",
+            "private": false
+        }
+    }
+}
