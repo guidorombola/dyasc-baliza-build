@@ -22,9 +22,10 @@ void ControladorDeAlertas::comunicarEstadoFallo(){
 }
 
 void ControladorDeAlertas::parpadearLed(int led, int cantidadDeParpadeos){
+    digitalWrite(this->ledRojo, LOW);
+    digitalWrite(this->ledVerde, LOW);
 
     for(int i = 0; i < cantidadDeParpadeos; i++) {
-
         digitalWrite(led, HIGH);
         delay(tiempoEntreParpadeo);
         digitalWrite(led, LOW);
