@@ -1,7 +1,7 @@
 #include "ControladorDeAlertas.hpp"
 #include <Arduino.h>
 
-#define tiempoEntreParpadeo 50
+#define tiempoEntreParpadeo 100
 
 ControladorDeAlertas::ControladorDeAlertas(){
     this->ledVerde = 2;
