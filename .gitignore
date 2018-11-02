@@ -5,3 +5,5 @@
 .vscode/launch.json
 .vscode/
 build/
+src/configuracion/produccion.h
+src/configuracion/remota.h

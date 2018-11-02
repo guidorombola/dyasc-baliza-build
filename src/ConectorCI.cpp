@@ -1,9 +1,7 @@
 #include "ConectorCI.hpp"
 #include <HTTPClient.h>
-
-const char* ssid = "Yoda";
-const char* clave = "gonzalono";
-const char* token = "token cy6bhRQXA54L7iVFkfAWfQ";
+#include "configuracion/remota.h"
+#include "configuracion/red.h"
 
 ConectorCI::ConectorCI() {
     this->wifi = new ConectorWiFi(ssid, clave);
@@ -14,13 +12,16 @@ Estado ConectorCI::obtenerEstado(){
     if (this->wifi->estaConectado()) {
         HTTPClient http;
         String estadoActual;
-        http.begin("https://api.travis-ci.com/repo/guidorombola%2Fdyasc-2018/branch/master");
-        http.addHeader("Travis-API-Version", "3", false, false);
+
+        http.begin(url);
+        http.addHeader("Travis-API-Version", version, false, false);
         http.addHeader("Authorization", token, false, false);
+
         int httpCode = http.GET();
         if (httpCode > 0) {
             String payload = http.getString();
             int inicioEstadoBuild = payload.indexOf("state");
+
             String aux = payload.substring(inicioEstadoBuild+9);
             int finEstadoBuild = aux.indexOf(",");
             estadoActual = aux.substring(0, finEstadoBuild-1);
