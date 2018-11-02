@@ -4,7 +4,8 @@
 enum class Estado {
     INDEFINIDO,
     OK,
-    FALLO
+    FALLO,
+    DESCONECTADO
 };
 
 #endif

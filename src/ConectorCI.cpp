@@ -1,6 +1,5 @@
 #include "ConectorCI.hpp"
-#include <HTTPClient.h>
-#include "configuracion/remota.h"
+#include "configuracion/local.h"
 #include "configuracion/red.h"
 
 ConectorCI::ConectorCI() {
@@ -9,31 +8,41 @@ ConectorCI::ConectorCI() {
 }
 
 Estado ConectorCI::obtenerEstado(){
+    estado = Estado::DESCONECTADO;
     if (this->wifi->estaConectado()) {
-        HTTPClient http;
-        String estadoActual;
+        String respuesta = this->realizarPeticion();
 
-        http.begin(url);
-        http.addHeader("Travis-API-Version", version, false, false);
-        http.addHeader("Authorization", token, false, false);
+        if(respuesta != ""){
+            int inicioEstadoBuild = respuesta.indexOf("state");
+            String comienzoDeIndicadorDeEstado = respuesta.substring(inicioEstadoBuild + 9);
+            int finDeIndicadorDeEstado = comienzoDeIndicadorDeEstado.indexOf(",");
+            String estadoActual = comienzoDeIndicadorDeEstado.substring(0, finDeIndicadorDeEstado - 1);
 
-        int httpCode = http.GET();
-        if (httpCode > 0) {
-            String payload = http.getString();
-            int inicioEstadoBuild = payload.indexOf("state");
-
-            String aux = payload.substring(inicioEstadoBuild+9);
-            int finEstadoBuild = aux.indexOf(",");
-            estadoActual = aux.substring(0, finEstadoBuild-1);
-        } else {
-            Serial.println("Error en peticion HTTP");
-        }
-        http.end();
-        if(estadoActual == "passed"){
-            estado = Estado::OK;
-        } else {
-            estado = Estado::FALLO;
+            if (estadoActual == "passed") {
+                estado = Estado::OK;
+            } else {
+                estado = Estado::FALLO;
+            }
         }
     }
+
     return estado;
+}
+
+String ConectorCI::realizarPeticion(){
+    this->cliente.begin(url);
+    this->cliente.addHeader("Travis-API-Version", version, false, false);
+    this->cliente.addHeader("Authorization", token, false, false);
+
+    int codigoHTTP = this->cliente.GET();
+
+    String respuesta = "";
+
+    if(codigoHTTP > 0){
+        respuesta = this->cliente.getString();
+    }
+
+    this->cliente.end();
+
+    return respuesta; 
 }
