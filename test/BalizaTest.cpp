@@ -132,3 +132,22 @@ TEST(prueba, orquestadorNoInformaCambioDeEstadoAlControladorDeAlertasSiElBuildCo
     delete controladorAlertas;
     delete orquestador;
 }
+
+TEST(prueba, SiHayProblemasEnLaComunicacionOrquestadorInformaAControladorDeAlertasQueIndiqueEstadoDesconexion){
+    MockConectorCI* mockCI = new MockConectorCI();
+    MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+
+    EXPECT_CALL(*mockCI, obtenerEstado()).Times(1)
+    .WillOnce(Return(Estado::DESCONECTADO));
+
+    EXPECT_CALL(*controladorAlertas, comunicarEstadoDesconectado()).Times(1);
+
+    Estado estadoDesconectado = orquestador->obtenerEstado();
+
+    ASSERT_EQ(Estado::DESCONECTADO, estadoDesconectado);
+
+    delete mockCI;
+    delete controladorAlertas;
+    delete orquestador;
+}
