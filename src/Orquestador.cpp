@@ -9,10 +9,18 @@ Orquestador::Orquestador(VisualizadorDeEstado* conector, ComunicadorDeEventos* c
 Estado Orquestador::obtenerEstado(){
     Estado estadoActual = con->obtenerEstado();
     if(estadoActual != ultimoEstado){
-        if(estadoActual == Estado::FALLO){
-            control -> comunicarEstadoFallo();
-        } else {
-            control -> comunicarEstadoOK();  
+        switch(estadoActual){
+            case Estado::OK:
+                control->comunicarEstadoOK();
+                break;
+            case Estado::FALLO:
+                control->comunicarEstadoFallo();
+                break;
+            case Estado::DESCONECTADO:
+                control->comunicarEstadoDesconectado();
+                break;
+            default:
+                break;
         }
     }
 

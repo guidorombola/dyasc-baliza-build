@@ -6,9 +6,11 @@
 ControladorDeAlertas::ControladorDeAlertas(){
     this->ledVerde = 2;
     this->ledRojo = 12;
+    this->ledAmarillo = 32;
 
     pinMode(this->ledVerde,OUTPUT);
     pinMode(this->ledRojo,OUTPUT);
+    pinMode(this->ledAmarillo, OUTPUT);
 }
 
 void ControladorDeAlertas::comunicarEstadoOK(){
@@ -21,9 +23,15 @@ void ControladorDeAlertas::comunicarEstadoFallo(){
     digitalWrite(this->ledRojo, HIGH);
 }
 
+void ControladorDeAlertas::comunicarEstadoDesconectado(){
+    parpadearLed(this->ledAmarillo, 10);
+    digitalWrite(this->ledAmarillo, HIGH);
+}
+
 void ControladorDeAlertas::parpadearLed(int led, int cantidadDeParpadeos){
     digitalWrite(this->ledRojo, LOW);
     digitalWrite(this->ledVerde, LOW);
+    digitalWrite(this->ledAmarillo, LOW);
 
     for(int i = 0; i < cantidadDeParpadeos; i++) {
         digitalWrite(led, HIGH);
