@@ -18,6 +18,8 @@ Estado Orquestador::obtenerEstado(){
                 control->comunicarEstadoFallo();
             }
         }
+    } else {
+        control->comunicarEstadoDesconectado();
     }
     ultimoEstado = estadoActual;
     
