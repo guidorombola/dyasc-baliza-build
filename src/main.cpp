@@ -18,6 +18,7 @@ void setup() {
     controlador = new ControladorDeAlertas();
     conectorWiFi = new ConectorWiFi(ssid, clave);
     orquestador = new Orquestador(conector, controlador, conectorWiFi);
+    orquestador->conectarARedWiFi();
 }
 
 void loop() {
