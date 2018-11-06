@@ -2,6 +2,7 @@
 #include "gmock/gmock.h"
 #include "MockConectorCI.cpp"
 #include "MockControladorDeAlertas.cpp"
+#include "MockConectorWiFi.cpp"
 #include "Orquestador.hpp"
 #include "Estado.hpp"
 
@@ -11,7 +12,8 @@ using ::testing::Return;
 TEST(prueba, orquestadorDevuelveEstadoSeteadoEnMock){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
-    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas, conectorWiFi);
     
     EXPECT_CALL(*mockCI, obtenerEstado())
     .Times(1)
@@ -29,7 +31,8 @@ TEST(prueba, orquestadorDevuelveEstadoSeteadoEnMock){
 TEST(prueba, orquestadorIniciaEnEstadoIndefinidoLuegoRecibeEstadoFalloEInformaAlControladorDeLedQueComuniqueFallo){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
-    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas, conectorWiFi);
     
     EXPECT_CALL(*mockCI, obtenerEstado())
     .Times(1)
@@ -49,7 +52,8 @@ TEST(prueba, orquestadorIniciaEnEstadoIndefinidoLuegoRecibeEstadoFalloEInformaAl
 TEST(prueba, orquestadorIniciaEnEstadoIndefinidoLuegoRecibeEstadoOKEInformaAlControladorDeLedQueComuniqueOK){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
-    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas, conectorWiFi);
     
     EXPECT_CALL(*mockCI, obtenerEstado())
     .Times(1)
@@ -69,7 +73,8 @@ TEST(prueba, orquestadorIniciaEnEstadoIndefinidoLuegoRecibeEstadoOKEInformaAlCon
 TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoFalloAOK){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
-    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas, conectorWiFi);
     
     EXPECT_CALL(*mockCI, obtenerEstado())
     .Times(2)
@@ -91,7 +96,8 @@ TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoFalloAOK){
 TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoOKAFallo){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
-    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas, conectorWiFi);
     
     EXPECT_CALL(*mockCI, obtenerEstado())
     .Times(2)
@@ -113,7 +119,8 @@ TEST(prueba, orquestadorInformaAlControladorDeLedQuePaseDeEstadoOKAFallo){
 TEST(prueba, orquestadorNoInformaCambioDeEstadoAlControladorDeAlertasSiElBuildContinuaEnElMismoEstadoAnteriorDeValorFallo){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
-    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas, conectorWiFi);
 
     EXPECT_CALL(*mockCI, obtenerEstado()).Times(2)
     .WillOnce(Return(Estado::FALLO))
@@ -136,7 +143,8 @@ TEST(prueba, orquestadorNoInformaCambioDeEstadoAlControladorDeAlertasSiElBuildCo
 TEST(prueba, SiHayProblemasEnLaComunicacionOrquestadorInformaAControladorDeAlertasQueIndiqueEstadoDesconexion){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
-    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas);
+    MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
+    Orquestador* orquestador = new Orquestador(mockCI, controladorAlertas, conectorWiFi);
 
     EXPECT_CALL(*mockCI, obtenerEstado()).Times(1)
     .WillOnce(Return(Estado::DESCONECTADO));

@@ -1,5 +1,5 @@
 #include "ConectorWiFi.hpp"
-#include <WiFi.h>
+#include <Arduino.h>
 
 #define MAX_INTENTOS_CONEXION 10
 

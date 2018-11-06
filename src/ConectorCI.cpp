@@ -1,31 +1,23 @@
 #include "ConectorCI.hpp"
 #include "configuracion/local.h"
-#include "configuracion/red.h"
 
-ConectorCI::ConectorCI() {
-    this->wifi = new ConectorWiFi(ssid, clave);
-    this->wifi->realizarConexion();
-}
+ConectorCI::ConectorCI() {}
 
 Estado ConectorCI::obtenerEstado(){
-    estado = Estado::DESCONECTADO;
-    if (this->wifi->estaConectado()) {
-        String respuesta = this->realizarPeticion();
+    estado = Estado::FALLO;
+    String respuesta = this->realizarPeticion();
 
-        if(respuesta != ""){
-            int inicioEstadoBuild = respuesta.indexOf("state");
-            String comienzoDeIndicadorDeEstado = respuesta.substring(inicioEstadoBuild + 9);
-            int finDeIndicadorDeEstado = comienzoDeIndicadorDeEstado.indexOf(",");
-            String estadoActual = comienzoDeIndicadorDeEstado.substring(0, finDeIndicadorDeEstado - 1);
+    if(respuesta != ""){
+        int inicioEstadoBuild = respuesta.indexOf("state");
+        String comienzoDeIndicadorDeEstado = respuesta.substring(inicioEstadoBuild + 9);
+        int finDeIndicadorDeEstado = comienzoDeIndicadorDeEstado.indexOf(",");
+        String estadoActual = comienzoDeIndicadorDeEstado.substring(0, finDeIndicadorDeEstado - 1);
 
-            if (estadoActual == "passed") {
-                estado = Estado::OK;
-            } else {
-                estado = Estado::FALLO;
-            }
+        if (estadoActual == "passed") {
+            estado = Estado::OK;
         }
     }
-
+    
     return estado;
 }
 

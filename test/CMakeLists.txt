@@ -3,6 +3,7 @@ add_executable(
     BalizaTest.cpp
     MockConectorCI.cpp
     MockControladorDeAlertas.cpp
+    MockConectorWiFi.cpp
     )
 
 target_link_libraries(
