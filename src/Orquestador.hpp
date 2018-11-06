@@ -3,7 +3,7 @@
 
 #include "VisualizadorDeEstado.hpp"
 #include "ComunicadorDeEventos.hpp"
-#include "ConectorWiFi.hpp"
+#include "GestorDeConexion.hpp"
 
 class Orquestador{
     public:
