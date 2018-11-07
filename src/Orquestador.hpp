@@ -11,7 +11,7 @@ class Orquestador{
         Estado obtenerEstado();
         void conectarARedWiFi();
     private:
-        VisualizadorDeEstado* con;
+        VisualizadorDeEstado* conector;
         ComunicadorDeEventos* control;
         GestorDeConexion* conectorWiFi;
         Estado ultimoEstado;
