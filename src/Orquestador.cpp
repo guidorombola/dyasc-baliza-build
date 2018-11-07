@@ -19,7 +19,9 @@ Estado Orquestador::obtenerEstado(){
             }
         }
     } else {
-        control->comunicarEstadoDesconectado();
+        if(estadoActual != ultimoEstado){
+            control->comunicarEstadoDesconectado();
+        }
     }
     ultimoEstado = estadoActual;
     
