@@ -4,11 +4,11 @@
 #include "VisualizadorDeEstado.hpp"
 #include "ComunicadorDeEventos.hpp"
 #include "GestorDeConexion.hpp"
-#include "ServidorLocal.hpp"
+#include "Servidor.hpp"
 
 class Orquestador{
     public:
-        Orquestador(VisualizadorDeEstado* conector, ComunicadorDeEventos* controlador, GestorDeConexion* conectorWiFi, ServidorLocal* servidor);
+        Orquestador(VisualizadorDeEstado* conector, ComunicadorDeEventos* controlador, GestorDeConexion* conectorWiFi, Servidor* servidor);
         Estado obtenerEstado();
         void conectarARedWiFi();
         void iniciarConexiones();
@@ -17,7 +17,7 @@ class Orquestador{
         ComunicadorDeEventos* control;
         GestorDeConexion* conectorWiFi;
         Estado ultimoEstado;
-        ServidorLocal* servidor;
+        Servidor* servidor;
 };
 
 #endif

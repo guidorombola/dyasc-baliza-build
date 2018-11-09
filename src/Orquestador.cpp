@@ -1,38 +1,41 @@
 #include "Orquestador.hpp"
 
-Orquestador::Orquestador(VisualizadorDeEstado* conector, ComunicadorDeEventos* controlador, GestorDeConexion* conectorWiFi){
+Orquestador::Orquestador(VisualizadorDeEstado* conector, 
+                         ComunicadorDeEventos* controlador, 
+                         GestorDeConexion* conectorWiFi, 
+                         Servidor* servidor){
     this->conector = conector;
     this->control = controlador;
     this->conectorWiFi = conectorWiFi;
-    this->ultimoEstado = Estado::INDEFINIDO;
     this->servidor = servidor;
+    this->ultimoEstado = Estado::INDEFINIDO;
 }
 
 Estado Orquestador::obtenerEstado(){
     Estado estadoActual = Estado::DESCONECTADO;
 
     if(this->conectorWiFi->estaConectado()){
-        estadoActual = con->obtenerEstado();
-        if(estadoActual != ultimoEstado){
+        estadoActual = this->conector->obtenerEstado();
+        if(estadoActual != this->ultimoEstado){
             switch (estadoActual)
             {
                 case Estado::OK:
-                    control->comunicarEstadoOK();
+                    this->control->comunicarEstadoOK();
                     break;
                 case Estado::FALLO:
-                    control->comunicarEstadoFallo();
+                    this->control->comunicarEstadoFallo();
                     break;
                 case Estado::DESCONECTADO:
-                    control->comunicarEstadoDesconectado();
+                    this->control->comunicarEstadoDesconectado();
                     break;
             }
         }
     } else {
         if(estadoActual != ultimoEstado){
-            control->comunicarEstadoDesconectado();
+            this->control->comunicarEstadoDesconectado();
         }
     }
-    ultimoEstado = estadoActual;
+    this->ultimoEstado = estadoActual;
     
     return estadoActual;
 }
