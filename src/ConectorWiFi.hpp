@@ -9,6 +9,7 @@ class ConectorWiFi: public GestorDeConexion{
         ConectorWiFi(const char* ssid, const char* clave);
         virtual bool estaConectado();
         virtual void realizarConexion();
+        virtual void iniciarAP();
     private:
         const char* ssid;
         const char* clave;

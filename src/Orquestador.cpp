@@ -1,10 +1,11 @@
 #include "Orquestador.hpp"
 
 Orquestador::Orquestador(VisualizadorDeEstado* conector, ComunicadorDeEventos* controlador, GestorDeConexion* conectorWiFi){
-    con = conector;
-    control = controlador;
+    this->conector = conector;
+    this->control = controlador;
     this->conectorWiFi = conectorWiFi;
-    ultimoEstado = Estado::INDEFINIDO;
+    this->ultimoEstado = Estado::INDEFINIDO;
+    this->servidor = servidor;
 }
 
 Estado Orquestador::obtenerEstado(){
@@ -38,4 +39,9 @@ Estado Orquestador::obtenerEstado(){
 
 void Orquestador::conectarARedWiFi(){
     this->conectorWiFi->realizarConexion();
+}
+
+void Orquestador::iniciarConexiones(){
+    this->conectorWiFi->iniciarAP();
+    this->servidor->iniciar();
 }

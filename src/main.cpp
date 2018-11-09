@@ -1,23 +1,28 @@
 #include <Arduino.h>
-#include <WiFi.h>
-#include <HTTPClient.h>
+
 #include "Orquestador.hpp"
 #include "ConectorCI.hpp"
 #include "ControladorDeAlertas.hpp"
 #include "ConectorWiFi.hpp"
+#include "ServidorLocal.hpp"
+
 #include "configuracion/red.h"
 
 ConectorCI* conector;
 ControladorDeAlertas* controlador;
 Orquestador* orquestador;
 ConectorWiFi* conectorWiFi;
+ServidorLocal* servidor;
 
 void setup() {
     Serial.begin(115200);
+
     conector = new ConectorCI();
     controlador = new ControladorDeAlertas();
     conectorWiFi = new ConectorWiFi(ssid, clave);
-    orquestador = new Orquestador(conector, controlador, conectorWiFi);
+    servidor = new ServidorLocal();
+
+    orquestador = new Orquestador(conector, controlador, conectorWiFi, servidor);
     orquestador->conectarARedWiFi();
 }
 

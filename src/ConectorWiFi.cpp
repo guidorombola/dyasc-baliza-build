@@ -27,3 +27,11 @@ void ConectorWiFi::realizarConexion(){
 bool ConectorWiFi::estaConectado(){
     return (WiFi.status() == WL_CONNECTED);
 }
+
+void ConectorWiFi::iniciarAP(){
+    WiFi.softAP("balizaCI", "integracioncontinua");
+
+    IPAddress IP = WiFi.softAPIP();
+    Serial.print("AP IP address: ");
+    Serial.println(IP);
+}
