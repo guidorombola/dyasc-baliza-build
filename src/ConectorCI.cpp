@@ -4,7 +4,7 @@
 ConectorCI::ConectorCI() {}
 
 Estado ConectorCI::obtenerEstado(){
-    estado = Estado::FALLO;
+    estado = Estado::DESCONECTADO;
     String respuesta = this->realizarPeticion();
 
     if(respuesta != ""){
@@ -13,6 +13,7 @@ Estado ConectorCI::obtenerEstado(){
         int finDeIndicadorDeEstado = comienzoDeIndicadorDeEstado.indexOf(",");
         String estadoActual = comienzoDeIndicadorDeEstado.substring(0, finDeIndicadorDeEstado - 1);
 
+        estado = Estado::FALLO;
         if (estadoActual == "passed") {
             estado = Estado::OK;
         }
@@ -30,7 +31,7 @@ String ConectorCI::realizarPeticion(){
 
     String respuesta = "";
 
-    if(codigoHTTP > 0){
+    if(codigoHTTP >= 200 && codigoHTTP < 300){
         respuesta = this->cliente.getString();
     }
 
