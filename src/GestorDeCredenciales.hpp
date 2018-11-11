@@ -3,14 +3,16 @@
 
 class GestorDeCredenciales{
     private:
-        const char* ssid;
-        const char* clave;
-    public:
         GestorDeCredenciales();
-        void establecerSsid(const char* ssid);
-        void establecerClave(const char* clave);
-        const char* obtenerSsid();
-        const char* obtenerClave();    
+
+        static const char* ssid;
+        static const char* clave;
+    public:
+
+        static void establecerSsid(const char* ssid);
+        static void establecerClave(const char* clave);
+        static const char* obtenerSsid();
+        static const char* obtenerClave();
 };
 
 #endif

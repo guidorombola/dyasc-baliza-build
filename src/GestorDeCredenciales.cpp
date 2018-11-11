@@ -1,16 +1,17 @@
 #include "GestorDeCredenciales.hpp"
 
-GestorDeCredenciales::GestorDeCredenciales(){};
+const char* GestorDeCredenciales::ssid = "";
+const char* GestorDeCredenciales::clave = "";
 
 void GestorDeCredenciales::establecerSsid(const char* ssid){
-    this->ssid = ssid;
+    GestorDeCredenciales::ssid = ssid;
 }
 void GestorDeCredenciales::establecerClave(const char* clave){
-    this->clave = clave;
+    GestorDeCredenciales::clave = clave;
 }
 const char* GestorDeCredenciales::obtenerSsid() {
-    return this->ssid;
+    return GestorDeCredenciales::ssid;
 }
 const char* GestorDeCredenciales::obtenerClave(){
-    return this->clave;
+    return GestorDeCredenciales::clave;
 }
