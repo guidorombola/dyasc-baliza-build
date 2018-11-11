@@ -1,16 +1,12 @@
 #include "ConectorWiFi.hpp"
-#include <Arduino.h>
 
 #define MAX_INTENTOS_CONEXION 10
 
-ConectorWiFi::ConectorWiFi(const char* ssid, const char* clave){
-    this->ssid = ssid;
-    this->clave = clave;
-}
+ConectorWiFi::ConectorWiFi(){}
 
 void ConectorWiFi::realizarConexion(){
     int intentosConexion = 0;
-    WiFi.begin(this->ssid, this->clave);
+    WiFi.begin(GestorDeCredenciales::obtenerSsid(), GestorDeCredenciales::obtenerClave());
 
     while (!this->estaConectado() && intentosConexion < MAX_INTENTOS_CONEXION) {
         delay(1000);

@@ -2,17 +2,15 @@
 #define CONECTORWIFI_H
 
 #include "GestorDeConexion.hpp"
+#include "GestorDeCredenciales.hpp"
 #include <WiFi.h>
 
 class ConectorWiFi: public GestorDeConexion{
     public:
-        ConectorWiFi(const char* ssid, const char* clave);
+        ConectorWiFi();
         virtual bool estaConectado();
         virtual void realizarConexion();
         virtual void iniciarAP();
-    private:
-        const char* ssid;
-        const char* clave;
 };
 
 #endif

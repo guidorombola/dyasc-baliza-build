@@ -6,8 +6,6 @@
 #include "ConectorWiFi.hpp"
 #include "ServidorLocal.hpp"
 
-#include "configuracion/red.h"
-
 ConectorCI* conector;
 ControladorDeAlertas* controlador;
 Orquestador* orquestador;
@@ -19,7 +17,7 @@ void setup() {
 
     conector = new ConectorCI();
     controlador = new ControladorDeAlertas();
-    conectorWiFi = new ConectorWiFi(ssid, clave);
+    conectorWiFi = new ConectorWiFi();
     servidor = new ServidorLocal();
 
     orquestador = new Orquestador(conector, controlador, conectorWiFi, servidor);
