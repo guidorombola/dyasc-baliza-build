@@ -2,6 +2,8 @@
 #define SERVIDORLOCAL_H
 
 #include "Servidor.hpp"
+#include "GestorDeCredenciales.hpp"
+
 #include <Arduino.h>
 #include <SPIFFS.h>
 #include <ESPAsyncWebServer.h>

@@ -19,7 +19,11 @@ void ServidorLocal::iniciar(){
         request->send(200, "text/plain", "pong");
     });
 
-    server.on("/datos/actualizar", HTTP_POST, [](AsyncWebServerRequest *request){
+    server.on("/datos/actualizar", HTTP_GET, [](AsyncWebServerRequest *request){
+
+        GestorDeCredenciales::establecerSsid("");
+        GestorDeCredenciales::establecerClave("");
+
         request->send(200, "text/plain", "Datos guardados!");
     });
 
