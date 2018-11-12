@@ -40,8 +40,16 @@ Estado Orquestador::obtenerEstado(){
     return estadoActual;
 }
 
-void Orquestador::conectarARedWiFi(){
-    this->conectorWiFi->realizarConexion();
+void Orquestador::manejarModo(){
+    if (GestorDeCredenciales::hayCambios()) {
+        if (this->primeraConexion) {
+            this->conectorWiFi->realizarConexion();
+            this->conectorWiFi->apagarAP();
+            this->primeraConexion = false;
+        }
+
+        this->obtenerEstado();
+    }
 }
 
 void Orquestador::iniciarConexiones(){

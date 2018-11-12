@@ -4,6 +4,7 @@
 #include "VisualizadorDeEstado.hpp"
 #include "ComunicadorDeEventos.hpp"
 #include "GestorDeConexion.hpp"
+#include "GestorDeCredenciales.hpp"
 #include "Servidor.hpp"
 
 class Orquestador{
@@ -12,12 +13,15 @@ class Orquestador{
         Estado obtenerEstado();
         void conectarARedWiFi();
         void iniciarConexiones();
+        void manejarModo();
     private:
         VisualizadorDeEstado* conector;
         ComunicadorDeEventos* control;
         GestorDeConexion* conectorWiFi;
         Estado ultimoEstado;
         Servidor* servidor;
+
+        bool primeraConexion = true;
 };
 
 #endif

@@ -21,10 +21,10 @@ void setup() {
     servidor = new ServidorLocal();
 
     orquestador = new Orquestador(conector, controlador, conectorWiFi, servidor);
-    orquestador->conectarARedWiFi();
+    orquestador->iniciarConexiones();
 }
 
 void loop() {
-    orquestador->obtenerEstado();
+    orquestador->manejarModo();
     delay(5000);
 }

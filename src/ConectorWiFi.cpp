@@ -31,3 +31,7 @@ void ConectorWiFi::iniciarAP(){
     Serial.print("AP IP address: ");
     Serial.println(IP);
 }
+
+void ConectorWiFi::apagarAP(){
+    WiFi.softAPdisconnect(true);
+}

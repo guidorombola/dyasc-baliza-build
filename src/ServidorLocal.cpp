@@ -19,10 +19,16 @@ void ServidorLocal::iniciar(){
         request->send(200, "text/plain", "pong");
     });
 
-    server.on("/datos/actualizar", HTTP_GET, [](AsyncWebServerRequest *request){
+    server.on("/datos/actualizar", HTTP_POST, [](AsyncWebServerRequest *request){
 
-        GestorDeCredenciales::establecerSsid("");
-        GestorDeCredenciales::establecerClave("");
+        AsyncWebParameter* ssidParametro = request->getParam(0);
+        AsyncWebParameter* claveParametro = request->getParam(1);
+
+        const char* ssidNuevo = ssidParametro->value().c_str();
+        const char* claveNueva = claveParametro->value().c_str();
+
+        GestorDeCredenciales::establecerSsid(ssidNuevo);
+        GestorDeCredenciales::establecerClave(claveNueva);
 
         request->send(200, "text/plain", "Datos guardados!");
     });

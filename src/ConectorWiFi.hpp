@@ -11,6 +11,7 @@ class ConectorWiFi: public GestorDeConexion{
         virtual bool estaConectado();
         virtual void realizarConexion();
         virtual void iniciarAP();
+        virtual void apagarAP();
 };
 
 #endif
