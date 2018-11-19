@@ -4,6 +4,8 @@ add_executable(
     MockConectorCI.cpp
     MockControladorDeAlertas.cpp
     MockConectorWiFi.cpp
+    MockServidorLocal.cpp
+    MockGestorDeCredenciales.cpp
     )
 
 target_link_libraries(
