@@ -3,6 +3,7 @@
 
 #include <HTTPClient.h>
 #include "VisualizadorDeEstado.hpp"
+#include "GestorDeCredenciales.hpp"
 
 class ConectorCI : public VisualizadorDeEstado {
     public:

@@ -1,5 +1,5 @@
 #include "ConectorCI.hpp"
-#include "configuracion/local.h"
+//#include "configuracion/local.h"
 
 ConectorCI::ConectorCI() {}
 
@@ -23,9 +23,9 @@ Estado ConectorCI::obtenerEstado(){
 }
 
 String ConectorCI::realizarPeticion(){
-    this->cliente.begin(url);
-    this->cliente.addHeader("Travis-API-Version", version, false, false);
-    this->cliente.addHeader("Authorization", token, false, false);
+    this->cliente.begin(GestorDeCredenciales::obtenerUrlServidorDeIntegracionContinua());
+    this->cliente.addHeader("Travis-API-Version", "3", false, false);
+    this->cliente.addHeader("Authorization", GestorDeCredenciales::obtenerAutenticacionServidorDeIntegracionContinua(), false, false);
 
     int codigoHTTP = this->cliente.GET();
 
