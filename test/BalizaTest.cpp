@@ -187,7 +187,7 @@ TEST(prueba, orquestadorNoInformaCambioDeEstadoAlControladorDeAlertasSiElBuildCo
 /* Fin requerimiento 1 */
 
 /* Requerimiento 5 - Comunica aviso de desconexión */
-TEST(prueba, SiHayProblemasEnLaComunicacionOrquestadorInformaAControladorDeAlertasQueIndiqueEstadoDesconexion){
+TEST(prueba, SiNoSePuedeConectarALaRedOrquestadorInformaAControladorDeAlertasQueIndiqueEstadoDesconexion){
     MockConectorCI* mockCI = new MockConectorCI();
     MockControladorDeAlertas* controladorAlertas = new MockControladorDeAlertas();
     MockConectorWiFi* conectorWiFi = new MockConectorWiFi();
