@@ -41,15 +41,12 @@ Estado Orquestador::obtenerEstado(){
 }
 
 void Orquestador::manejarModo(){
-    if (GestorDeCredenciales::hayCambios()) {
-        if (this->primeraConexion) {
-            this->conectorWiFi->realizarConexion();
-            this->conectorWiFi->apagarAP();
-            this->primeraConexion = false;
-        }
-
-        this->obtenerEstado();
+    if (this->primeraConexion) {
+        this->conectorWiFi->realizarConexion();
+        this->primeraConexion = false;
     }
+
+    this->obtenerEstado();
 }
 
 void Orquestador::iniciarConexiones(){

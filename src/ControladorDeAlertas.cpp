@@ -5,8 +5,8 @@
 
 ControladorDeAlertas::ControladorDeAlertas(){
     this->ledVerde = 2;
-    this->ledRojo = 12;
-    this->ledAmarillo = 32;
+    this->ledRojo = 4;
+    this->ledAmarillo = 5;
 
     pinMode(this->ledVerde,OUTPUT);
     pinMode(this->ledRojo,OUTPUT);

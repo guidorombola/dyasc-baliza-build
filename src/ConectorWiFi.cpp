@@ -6,10 +6,10 @@ ConectorWiFi::ConectorWiFi(){}
 
 void ConectorWiFi::realizarConexion(){
     int intentosConexion = 0;
-    WiFi.begin(GestorDeCredenciales::obtenerSsid(), GestorDeCredenciales::obtenerClave());
+    WiFi.begin("aceptacion", "clave1234");
 
     while (!this->estaConectado() && intentosConexion < MAX_INTENTOS_CONEXION) {
-        delay(1000);
+        delay(300);
         Serial.println("Conectando al WiFi..");
         intentosConexion++;
     }

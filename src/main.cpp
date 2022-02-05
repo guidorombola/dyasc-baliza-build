@@ -21,10 +21,9 @@ void setup() {
     servidor = new ServidorLocal();
 
     orquestador = new Orquestador(conector, controlador, conectorWiFi, servidor);
-    orquestador->iniciarConexiones();
 }
 
 void loop() {
     orquestador->manejarModo();
-    delay(5000);
+    delay(2000);
 }
